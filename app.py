@@ -641,11 +641,28 @@ def get_top_rated(df, top_n=10):
 # --- REVERTED TO SIMPLE LOGIC (Prevents hiding images) ---
 def get_poster_url(poster_path):
     """
-    Convert poster_path to full TMDB image URL
+    Robust function to convert poster_path to full TMDB image URL
     """
-    if pd.isna(poster_path) or str(poster_path) == 'nan' or poster_path == '':
-        return None
-    return f"https://image.tmdb.org/t/p/w500{poster_path}"
+    # 1. Check for missing data (NaN, empty strings, 'nan' text)
+    if pd.isna(poster_path) or str(poster_path).lower() in ['nan', 'none', '', '[]']:
+        # Return a default "No Image" placeholder
+        return "https://via.placeholder.com/500x750?text=No+Poster"
+
+    path = str(poster_path).strip()
+
+    # 2. Handle data looking like a list "['/path.jpg']"
+    if path.startswith("['") and path.endswith("']"):
+        path = path[2:-2]
+    elif path.startswith("['") and path.endswith("']"):
+        path = path[2:-2]
+
+    # 3. If it's already a full URL, return it
+    if path.startswith('http'):
+        return path
+
+    # 4. Build the TMDB URL (ensuring exactly one slash)
+    clean_path = path.lstrip('/')
+    return f"https://image.tmdb.org/t/p/w500/{clean_path}"
 
 
 # ---------------------------------------------------------
