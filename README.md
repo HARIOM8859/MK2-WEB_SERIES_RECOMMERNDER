@@ -75,6 +75,12 @@ streamlit run app.py
 
 ## 📸 Output
 
+<img width="1855" height="901" alt="image" src="https://github.com/user-attachments/assets/d32356ff-1ef3-4c85-99be-eb07d4a26f0e" />
+
+<img width="1903" height="903" alt="image" src="https://github.com/user-attachments/assets/3a9cd901-3271-424c-afb0-6e84db5ad162" />
+
+
+
 * Displays recommended web series with posters
 * Shows top similar results instantly
 
@@ -83,7 +89,7 @@ streamlit run app.py
 ## 📈 Future Improvements
 
 * Add user login & personalized recommendations
-* Deploy on cloud (Streamlit / AWS)
+* Deploy on cloud (Streamlit)
 * Hybrid recommendation using user ratings
 * Add filtering by platform (Netflix, Prime, etc.)
 
